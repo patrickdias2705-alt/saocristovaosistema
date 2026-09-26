@@ -1,7 +1,8 @@
 import { config } from 'dotenv';
-import { resolve } from 'node:path';
+import { dirname, resolve } from 'node:path';
+import { fileURLToPath } from 'node:url';
 import { z } from 'zod';
-config({ path: resolve(__dirname, '../../../.env'), quiet: true });
+config({ path: resolve(dirname(fileURLToPath(import.meta.url)), '../../../.env'), quiet: true });
 const envSchema = z.object({
   NODE_ENV: z.enum(['development', 'test', 'production']).default('development'),
   APP_MODE: z.enum(['supabase', 'demo']).default('supabase'),

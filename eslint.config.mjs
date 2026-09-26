@@ -5,6 +5,7 @@ export default ts.config(
     ignores: [
       '**/node_modules/**',
       '**/.venv/**',
+      '**/.vercel/**',
       '**/dist/**',
       '**/.next/**',
       '**/.data/**',

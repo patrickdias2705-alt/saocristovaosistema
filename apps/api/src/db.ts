@@ -2,7 +2,8 @@ import { PGlite } from '@electric-sql/pglite';
 import { attachDatabasePool } from '@vercel/functions';
 import { Pool } from 'pg';
 import { readFile, readdir, mkdir } from 'node:fs/promises';
-import { resolve } from 'node:path';
+import { dirname, resolve } from 'node:path';
+import { fileURLToPath } from 'node:url';
 import type { Config } from './config';
 export interface Sql {
   query<T extends Record<string, unknown> = Record<string, unknown>>(
@@ -10,7 +11,7 @@ export interface Sql {
     params?: unknown[],
   ): Promise<T[]>;
 }
-export const ROOT = resolve(__dirname, '../../..');
+export const ROOT = resolve(dirname(fileURLToPath(import.meta.url)), '../../..');
 export const DEMO_USERS = {
   operator: '60000000-0000-4000-8000-000000000001',
   supervisor: '60000000-0000-4000-8000-000000000002',
