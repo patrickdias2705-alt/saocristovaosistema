@@ -5,6 +5,7 @@ COPY requirements.txt .
 RUN pip install --no-cache-dir -r requirements.txt
 RUN useradd --create-home ocr
 COPY --chown=ocr:ocr . .
+RUN chown ocr:ocr /app
 USER ocr
 ENV PYTHONUNBUFFERED=1
 ENV VERCEL=1
