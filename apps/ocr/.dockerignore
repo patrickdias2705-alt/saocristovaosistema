@@ -1,0 +1,12 @@
+.venv/
+.vercel/
+.paddlex/
+__pycache__/
+.pytest_cache/
+.ruff_cache/
+build/
+*.egg-info/
+*.pyc
+test_parser.py
+smoke.py
+requirements-dev.txt

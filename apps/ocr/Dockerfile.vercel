@@ -10,5 +10,5 @@ ENV PYTHONUNBUFFERED=1
 ENV VERCEL=1
 ENV PADDLE_PDX_CACHE_HOME=/app/.paddlex
 RUN python build.py
-EXPOSE 8000
-CMD ["sh", "-c", "uvicorn main:app --host 0.0.0.0 --port ${PORT:-8000} --no-access-log --limit-concurrency 4"]
+EXPOSE 80
+CMD ["sh", "-c", "uvicorn main:app --host 0.0.0.0 --port ${PORT:-80} --no-access-log --limit-concurrency 4"]

@@ -20,8 +20,7 @@
     },
     "ocr": {
       "root": "apps/ocr/",
-      "framework": "fastapi",
-      "entrypoint": "main:app"
+      "entrypoint": "Dockerfile.vercel"
     }
   },
   "rewrites": [

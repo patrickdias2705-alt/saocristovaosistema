@@ -4,14 +4,14 @@ O projeto usa Vercel Services para publicar três aplicações no mesmo domínio
 
 - `web`: Next.js em `apps/web`;
 - `api`: NestJS em `apps/api`, exposta em `/api/*`;
-- `ocr`: FastAPI em `apps/ocr`, privada e acessada pela API por service binding.
+- `ocr`: FastAPI em container, privada e acessada pela API por service binding.
 
 ## Criar o projeto
 
 1. Importe o repositório no Vercel.
 2. Em **Build and Deployment > Framework Preset**, selecione **Services**.
 3. Mantenha a raiz do projeto no diretório raiz do repositório. O arquivo `vercel.json` define os três serviços e as rotas.
-4. Ative Fluid Compute. Projetos novos normalmente já recebem suporte a funções grandes; se o bundle Python ultrapassar o limite padrão, adicione `VERCEL_SUPPORT_LARGE_FUNCTIONS=1` e faça um novo deploy.
+4. Ative Fluid Compute para a API. O OCR usa o `Dockerfile.vercel` de `apps/ocr`, que inclui as bibliotecas nativas e os modelos necessários.
 
 ## Variáveis obrigatórias
 
@@ -45,6 +45,6 @@ Após o deploy:
 3. Abra **Fotografar etiqueta**, permita a câmera e faça uma leitura.
 4. Confirme que o nome e a unidade continuam sendo sugestões e exigem confirmação humana.
 
-O upload é limitado a 4 MB por causa do limite de payload da Vercel Function. No Vercel, o PaddleOCR usa `PP-OCRv5_mobile_det`; localmente, continua usando o detector server para maior precisão. Os modelos hospedados são baixados no build e incluídos no bundle, evitando download no primeiro atendimento.
+O upload é limitado a 4 MB por causa do limite de payload da Vercel Function. No Vercel, o PaddleOCR usa `PP-OCRv5_mobile_det`; localmente, continua usando o detector server para maior precisão. Os modelos hospedados são baixados durante a criação do container, evitando download no primeiro atendimento.
 
 As Functions não mantêm loops permanentes. No Vercel, a primeira tentativa de notificação é processada junto do recebimento. Retentativas recorrentes e limpeza de imagens com retenção maior que zero exigem um cron ou worker externo antes de uso em produção.
