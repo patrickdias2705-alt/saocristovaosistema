@@ -1,0 +1,33 @@
+{
+  "name": "sao-cristovao-entregas",
+  "private": true,
+  "version": "0.1.0",
+  "packageManager": "pnpm@10.12.1",
+  "engines": {
+    "node": ">=22.12.0"
+  },
+  "scripts": {
+    "dev": "pnpm --parallel --filter @sc/api --filter @sc/web dev",
+    "demo": "node scripts/demo.mjs",
+    "start:supabase": "node scripts/start-supabase.mjs",
+    "smoke:supabase": "node scripts/smoke-supabase.mjs",
+    "lint": "eslint . --max-warnings 0",
+    "format": "prettier --write .",
+    "format:check": "prettier --check .",
+    "typecheck": "pnpm -r typecheck",
+    "test": "pnpm --filter @sc/api test",
+    "build": "pnpm -r build",
+    "db:seed-auth": "pnpm --filter @sc/api exec tsx src/setup-local.ts",
+    "test:e2e": "playwright test"
+  },
+  "devDependencies": {
+    "@eslint/js": "^10.0.1",
+    "@playwright/test": "^1.58.0",
+    "@types/node": "^24.0.0",
+    "eslint": "^10.11.0",
+    "prettier": "^3.8.0",
+    "supabase": "2.118.0",
+    "typescript": "^6.0.3",
+    "typescript-eslint": "^8.57.0"
+  }
+}

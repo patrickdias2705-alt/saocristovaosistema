@@ -1,0 +1,13 @@
+services:
+  ocr:
+    build: ./apps/ocr
+    ports:
+      - '127.0.0.1:8000:8000'
+    environment:
+      OCR_SERVICE_TOKEN: ${OCR_SERVICE_TOKEN:?Configure OCR_SERVICE_TOKEN}
+    volumes:
+      - ocr-models:/home/ocr/.paddlex
+    mem_limit: 4g
+    restart: unless-stopped
+volumes:
+  ocr-models:

@@ -1,0 +1,9 @@
+pnpm-lock.yaml
+.data
+.next
+dist
+node_modules
+.venv
+**/.venv/**
+*.png
+supabase/config.toml
