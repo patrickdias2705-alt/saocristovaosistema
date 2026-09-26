@@ -8,6 +8,7 @@
     "api": {
       "root": "apps/api/",
       "framework": "nestjs",
+      "entrypoint": "src/main.ts",
       "bindings": [
         {
           "type": "service",
